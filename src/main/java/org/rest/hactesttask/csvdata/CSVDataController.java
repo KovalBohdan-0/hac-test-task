@@ -53,4 +53,16 @@ public class CSVDataController {
         List<CSVData> results = csvDataService.searchByName(query);
         return ResponseEntity.ok(results);
     }
+
+    @Operation(summary = "Full text search for CSV data")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "CSV data found",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CSVData.class))
+            })
+    })
+    @GetMapping("/fulltext-search")
+    public ResponseEntity<List<CSVData>> fullTextSearch(@RequestParam("query") String query) {
+        return ResponseEntity.ok(csvDataService.fullTextSearch(query));
+    }
 }

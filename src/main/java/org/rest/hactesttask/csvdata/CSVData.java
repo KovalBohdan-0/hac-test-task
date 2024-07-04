@@ -4,26 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 @Entity
+@Indexed
 public class CSVData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @FullTextField
     private String firstName;
+    @FullTextField
     private String lastName;
+    @FullTextField
     private String email;
-    private String phone;
+    @FullTextField
+    private String bio;
     private int age;
 
     public CSVData() {
     }
 
-    public CSVData(String firstName, String lastName, String email, String phone, int age) {
+    public CSVData(String firstName, String lastName, String email, String bio, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.phone = phone;
+        this.bio = bio;
         this.age = age;
     }
 
@@ -59,12 +66,12 @@ public class CSVData {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getBio() {
+        return bio;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setBio(String phone) {
+        this.bio = phone;
     }
 
     public int getAge() {
